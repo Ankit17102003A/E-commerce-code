@@ -1,0 +1,67 @@
+import java.util.ArrayList;
+import java.util.List;
+
+class Product {
+    String name;
+    double price;
+
+    // Constructor to initialize the product details
+    public Product(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    // Overriding toString method to display product details
+    public String toString() {
+        return name + " - $" + price;
+    }
+}
+
+class ShoppingCart {
+    List<Product> cart = new ArrayList<>();
+
+    // Method to add products to the cart
+    public void addProduct(Product product) {
+        cart.add(product);
+    }
+
+    // Method to view the products in the cart
+    public void viewCart() {
+        if (cart.isEmpty()) {
+            System.out.println("Your cart is empty!");
+        } else {
+            System.out.println("Shopping Cart:");
+            for (Product product : cart) {
+                System.out.println(product);
+            }
+        }
+    }
+
+    // Method to calculate the total price of the cart
+    public double calculateTotal() {
+        double total = 0;
+        for (Product product : cart) {
+            total += product.price;
+        }
+        return total;
+    }
+}
+
+public class ECommercePlatform {
+    public static void main(String[] args) {
+        // Creating some product objects
+        Product product1 = new Product("Laptop", 999.99);
+        Product product2 = new Product("Smartphone", 499.49);
+
+        // Creating a shopping cart object
+        ShoppingCart cart = new ShoppingCart();
+
+        // Adding products to the cart
+        cart.addProduct(product1);
+        cart.addProduct(product2);
+
+        // Displaying cart and total price
+        cart.viewCart();
+        System.out.println("Total Price: $" + cart.calculateTotal());
+    }
+}
